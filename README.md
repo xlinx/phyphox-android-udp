@@ -1,3 +1,9 @@
+# Add support UDP by DECADE.TW
+
+support UDP broadcast and uni casting.
+ - when access Http server will also enable UDP send to x.x.x.255; change the target udp ip just send any word to mobile port 16888.
+ - then broadcast will change target to unicast to last ip address who say hi.
+
 # phyphox: Android
 
 Phyphox is an app that uses the sensors in a smartphone for physics experiments. You can find additional details and examples on https://phyphox.org.
@@ -6,7 +12,7 @@ Copyright 2016 Dr. Sebastian Staacks, 2nd Institute of Physics, RWTH Aachen Univ
 
 This project has been created at the RWTH Aachen University and is released under the GNU General Public Licence (see licence file) since version 1.1.0.
 
-**The names "phyphox" and "RWTH Aachen University" as well as the RWTH Aachen logo are registered trademarks.**
+**The names "phyphox" and "RWTH Aachen Univer
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
      alt="Get it on F-Droid"
@@ -40,7 +46,7 @@ This repository contains the source for the Android version of the app. The whol
 
 * **phyphox-webinterface**
   This is the webinterface served by the webserver in the app when the "remote access" feature is activated
-  
+
 The overarching documentation (for example of the phyphox file format or the REST API) can be found in our [Wiki on phyphox.org](https://phyphox.org/wiki).
 
 ## Branches
@@ -87,7 +93,7 @@ This product contains the Piccolo XML Parser for Java
 This product contains the chunks_parse_cmds.tbl file from the vsdump program.
 Copyright (C) 2006-2007 Valek Filippov (frob@df.ru)
 
-This product contains parts of the eID Applet project 
+This product contains parts of the eID Applet project
 <http://eid-applet.googlecode.com> and <https://github.com/e-Contract/eid-applet>.
 Copyright (c) 2009-2014
 FedICT (federal ICT department of Belgium), e-Contract.be BVBA (https://www.e-contract.be),
@@ -125,7 +131,7 @@ Redistribution and use in source and binary forms, with or without modification,
 
 * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-* Neither the name of the Eclipse Foundation, Inc. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
+* Neither the name of the Eclipse Foundation, Inc. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
