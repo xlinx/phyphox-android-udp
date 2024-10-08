@@ -64,6 +64,8 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.Vector;
 
+import tw.decade.extension.UdpSocketX;
+
 //remoteServer implements a web-interface to remote control the experiment and receive the data
 //Unfortunately, Google decided to depricate org.apache.http in Android 6, so until we move to
 //something else, we need to suppress deprication warnings if we do not want to get flooded.
@@ -72,7 +74,7 @@ import java.util.Vector;
 public class RemoteServer extends Thread {
 
     private final PhyphoxExperiment experiment; //Reference to the experiment we want to control
-
+    UdpSocketX udpSocketX;//=new UdpSocketX(callActivity.getBaseContext());
     HttpService httpService; //Holds our http service
     BasicHttpContext basicHttpContext; //A simple http context...
     static int httpServerPort = 8080; //We have to pick a high port number. We may not use 80...
@@ -333,6 +335,7 @@ public class RemoteServer extends Thread {
         //Start the service...
         RUNNING = true;
         startHttpService();
+
     }
 
     RemoteServer(PhyphoxExperiment experiment, Experiment callActivity) {
@@ -448,7 +451,8 @@ public class RemoteServer extends Thread {
         httpService = new HttpService(basicHttpProcessor,
                 new DefaultConnectionReuseStrategy(),
                 new DefaultHttpResponseFactory());
-
+        udpSocketX=new UdpSocketX(callActivity.getBaseContext());
+        udpSocketX.start();
         //Now register a handler for different requests
         HttpRequestHandlerRegistry registry = new HttpRequestHandlerRegistry();
         registry.register("/", new HomeCommandHandler()); //The basic interface (index.html) when the user just calls the address
@@ -726,7 +730,8 @@ public class RemoteServer extends Thread {
 
             //Done. Build a string and return it as usual
             final String result = sb.toString();
-
+//            udpSocketX.bordcasting(result);
+            udpSocketX.callback_casting(result);
             BasicHttpEntity entity = new BasicHttpEntity();
             InputStream inputStream = new ByteArrayInputStream(result.getBytes());
             entity.setContent(inputStream);
