@@ -50,6 +50,14 @@
 
     <androidx.preference.PreferenceCategory android:title="@string/settingsHeadAdvanced">
         <androidx.preference.EditTextPreference
+            android:key="remoteAccessPort_UDP"
+            android:title="UDP Server and Target Port"
+            android:summary="%s"
+            android:defaultValue="16888"
+            android:persistent="true"
+            app:useSimpleSummaryProvider="true"
+            />
+        <androidx.preference.EditTextPreference
             android:key="remoteAccessPort"
             android:title="@string/settingsPort"
             android:summary="%s"
@@ -65,6 +73,7 @@
             android:summary="@string/settingsProximityLockDetail"
             android:persistent="true"
             android:defaultValue="false" />
+
 
     </androidx.preference.PreferenceCategory>
 

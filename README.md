@@ -1,7 +1,8 @@
-# Add support UDP by DECADE.TW
+# Add support UDP
 
 support UDP broadcast and uni casting.
- - when access Http server will also enable UDP send to x.x.x.255; change the target udp ip just send any word to mobile port 16888.
+ - when access Http server will also enable UDP send to x.x.x.255; change the target udp ip just send any word to mobile ip and port 16888.
+ - Socket tools: https://packetsender.com/download
  - then broadcast will change target to unicast to last ip address who say hi.
 
 # phyphox: Android

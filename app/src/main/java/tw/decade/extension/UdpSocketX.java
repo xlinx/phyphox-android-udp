@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 
+import androidx.preference.PreferenceManager;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -24,7 +26,7 @@ public class UdpSocketX extends Thread {
     public static final String RECEIVE_STRING = "ReceiveString";
     public static final String RECEIVE_BYTES = "ReceiveBytes";
 
-    private int port = 16888;
+    static int httpServerPort_UDP = 16888;
     private String ServerIp;
     private String CallBack_Ip="";
     private String CallBack_Ip_lasttime="";
@@ -40,27 +42,29 @@ public class UdpSocketX extends Thread {
         }
     }
     public void setPort(int port){
-        this.port = port;
+        this.httpServerPort_UDP = port;
     }
 
      public UdpSocketX(Context context) {
         this.context = context;
         this.ServerIp = "0.0.0.0";
         this.isOpen = true;
-        Log.d(TAG, "[Init][UDP][UdpSocketX][]" + ServerIp + ":" + this.port);
+        httpServerPort_UDP = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context).getString("remoteAccessPort_UDP", "16888"));
+
+         Log.d(TAG, "[Init][UDP][UdpSocketX][]" + ServerIp + ":" + httpServerPort_UDP);
 
     }
     String[] ip_4_digi=getIPAddress(true).split("\\.");
     String ip_classC_bordcasting=ip_4_digi[0]+"."+ip_4_digi[1]+"."+ip_4_digi[2]+".255";
     public void bordcasting(String string) throws IOException {
 
-        unicasting(string,ip_classC_bordcasting,this.port);
+        unicasting(string,ip_classC_bordcasting, httpServerPort_UDP);
     }
     public void callback_casting(String string) throws IOException {
         if(this.CallBack_Ip.isEmpty())
             bordcasting(string);
         else
-            unicasting(string,this.CallBack_Ip,this.port);
+            unicasting(string,this.CallBack_Ip, httpServerPort_UDP);
     }
 
     public void unicasting(String string, String remoteIp, int remotePort) throws IOException {
@@ -119,7 +123,7 @@ public class UdpSocketX extends Thread {
     }
     @Override
     public void run() {
-        InetSocketAddress inetSocketAddress = new InetSocketAddress( port);
+        InetSocketAddress inetSocketAddress = new InetSocketAddress( httpServerPort_UDP);
         try {
             ds = new DatagramSocket(inetSocketAddress);
             Log.e(TAG, "[O][UDP-Server] started");
@@ -129,7 +133,7 @@ public class UdpSocketX extends Thread {
         }
         byte[] msgRcv = new byte[1024];
         DatagramPacket dpRcv = new DatagramPacket(msgRcv, msgRcv.length);
-        Log.e(TAG, "UDP-Server Listening port:"+this.port+" ...(default send broadcasting x.x.x.255; otherwise send hi to phone IP port:16888, then udp will send json to last one who calls ip address.)");
+        Log.e(TAG, "UDP-Server Listening port:"+ httpServerPort_UDP+" ...(default send broadcasting x.x.x.255; otherwise send hi to phone IP port:16888, then udp will send json to last one who calls ip address.)");
         while (isOpen) {
             try {
                 ds.receive(dpRcv);
